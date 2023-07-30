@@ -23,11 +23,11 @@ Hooks.once("socketlib.ready", () => {
 
 function _runMacro(macro, ...args){
     let m = game.macros.getName(macro);
-    let author_id = m?.data?.author;
-    if (author_id === undefined){
+    let author = m?.data?.author;
+    if (author === undefined){
       return "Error: Macro", macro, "not found on client";
     }
-    if (game.users.get(author_id)?.isGM){
+    if (author.isGM){
       return m.execute(args);
     }
     else{
